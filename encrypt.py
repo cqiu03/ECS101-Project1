@@ -1,4 +1,6 @@
 class Encrypt:
+    #We need a function to somehow preprocess the text to include the things that we want
+    #for example if "and" is a reoccuring world and its value is 1 we need to change all and into 1
     def encrypt(self):
         encrypted = ""
         for char in self.text:
@@ -14,6 +16,8 @@ class Encrypt:
     def __init__(self, filename):
         self.file = open(filename)
         self.text = self.file.read()
+        #Have a special dictionary that contains the special cases so make it easier
+        #to iterate through it
         self.CHAR_CONVERSION = {"a":"00001", "e":"00010", "i":"00011", "o":"00100", "u":"00101",
         "t":"00110", "s":"00111", "W":"01000", "T":"01001", "I":"01010",
         "A":"01011", "H":"01100", "S":"01101", "B":"01110", "n":"01111",
