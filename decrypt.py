@@ -8,7 +8,7 @@ class Decrypt:
         "01011":"A", "01100":"H", "01101":"S", "01110":"B", "01111":"n",
         "1000000":"C", "1000001":"D", "1000010":"E", "1000011":"F",
         "1000100":"G", "1000101":"J", "1000110":"K", "1000111":"L",
-        "1001000":"M", "1001001":"N", "1001100":"O", "1001011":"P",
+        "1001000":"M", "1001001":"N", "1001010":"O", "1001011":"P",
         "1001100":"Q", "1001101":"R", "1001110":"U", "1001111":"V",
         "1010000":"X", "1010001":"Y", "1010010":"Z", "1010011":"c",
         "1010100":"d", "1010101":"f", "1010110":"g", "1010111":"h",
@@ -25,27 +25,17 @@ class Decrypt:
 
         self.export()
 
-    def helperRecur(self, binary, data):
-        local_data = data
-        if not (binary == ""):
-            # if the binary starts with the S(0), then it is going to look at the
-            # next 4 numbers
-            if (binary[0] == "0"):
-                local_data.append(binary[0:5])
-                self.helperRecur(binary[5:], local_data)
-            else:
-                # else it must be L(1), then it is going to look at the
-                # next 6 numbers
-                data.append(binary[0:7])
-                self.helperRecur(binary[7:], local_data)
-        return data
-
+    #Take in a string of binary and converts it back to text using the converstion table
     def decrypt(self):
-        pindex = self.binary.index(".")
-        binary_list = self.helperRecur(self.binary[pindex + 1:], [])
+        pindex = self.binary.index(".") + 1
         decrypt = ""
-        for i in binary_list:
-            decrypt += self.CONVERSION_TABLE[i]
+        while pindex < len(self.binary):
+            if(self.binary[pindex] == '0'):
+                decrypt += self.CONVERSION_TABLE[self.binary[pindex:pindex+5]]
+                pindex+=5
+            else:
+                decrypt += self.CONVERSION_TABLE[self.binary[pindex:pindex+7]]
+                pindex+=7
         return decrypt
 
     def export(self):
