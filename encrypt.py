@@ -1,5 +1,7 @@
 class Encrypt:
     def __init__(self, filename):
+
+        #read file
         self.file = open(filename,encoding="utf8")
         self.text = self.file.read()
 
@@ -7,7 +9,7 @@ class Encrypt:
         self.CHAR_SP = ['and', 'the','are','for', 'not', 'but', 'that', 'with',
                         'have','this','will','be','it','to','of','in','is','as',
                         'ing', 'ed']
-
+        #A dictionary containing the key pair values that convert a str into binary
         self.CHAR_CONVERSION = {"a":"00001", "e":"00010", "i":"00011", "o":"00100", "u":"00101",
         "t":"00110", "s":"00111", "W":"01000", "T":"01001", "I":"01010",
         "A":"01011", "H":"01100", "S":"01101", "B":"01110", "n":"01111",

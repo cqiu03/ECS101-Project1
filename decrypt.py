@@ -1,8 +1,10 @@
 class Decrypt:
     def __init__(self, filename):
-        #Conversion Table herex
+        #Read the file
         self.file = open(filename)
         self.binary = self.file.read()
+
+        #A dictionary containing the key pair values that convert binary into str
         self.CONVERSION_TABLE = {"00001":"a", "00010":"e", "00011":"i", "00100":"o", "00101":"u",
         "00110":"t", "00111":"s", "01000":"W", "01001":"T", "01010":"I",
         "01011":"A", "01100":"H", "01101":"S", "01110":"B", "01111":"n",
@@ -27,8 +29,10 @@ class Decrypt:
 
     #Take in a string of binary and converts it back to text using the converstion table
     def decrypt(self):
+        #find the index of the first binary bit after the index
         pindex = self.binary.index(".") + 1
         decrypt = ""
+
         while pindex < len(self.binary):
             if(self.binary[pindex] == '0'):
                 decrypt += self.CONVERSION_TABLE[self.binary[pindex:pindex+5]]
