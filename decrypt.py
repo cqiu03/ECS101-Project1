@@ -16,7 +16,7 @@ class Decrypt:
         "1010100":"d", "1010101":"f", "1010110":"g", "1010111":"h",
         "1011000":"k", "1011001":"l", "1011010":"m", "1011011":"p",
         "1011100":"g", "1011101":"r", "1011110":"v", "1011111":"x",
-        "1011110":"v", "1100000":"y", "1100001":"z", "1100010":"w","1101010":"j",
+        "1011110":"v", "1100000":"y", "1100001":"z", "1100010":"w","1101010":"j",'1100110':'!',
         "1100011":".", "00000":" ", "1100101":"-", '1101001': 'b',
         '1101011':'"', '1100100': ',', "1100111": "'", "1101000":"\n",
          '1101100': 'the', '1101101': 'and', '1101110': 'are', '1101111': 'for',
@@ -34,6 +34,7 @@ class Decrypt:
         decrypt = ""
 
         while pindex < len(self.binary):
+            #check for the starting bit either 0 or 1 for short or long
             if(self.binary[pindex] == '0'):
                 decrypt += self.CONVERSION_TABLE[self.binary[pindex:pindex+5]]
                 pindex+=5
@@ -42,6 +43,7 @@ class Decrypt:
                 pindex+=7
         return decrypt
 
+    #Write to a file
     def export(self):
         outFile = open('decompress.txt', 'w')
         outFile.write(self.decrypt())

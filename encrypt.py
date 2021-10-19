@@ -22,7 +22,7 @@ class Encrypt:
         "k":"1011000", "l":"1011001", "m":"1011010", "p":"1011011",
         "q":"1011100", "r":"1011101", "v":"1011110", "x":"1011111",
         "y":"1100000", "z":"1100001", "w":"1100010","j":"1101010",
-        ".":"1100011", " ":"00000", "-":"1100101", 'b':'1101001',
+        ".":"1100011", " ":"00000", "-":"1100101", 'b':'1101001','1':'1100110',
         '"':'1101011', '“':'1101011', '”':'1101011', ',': '1100100', "'": "1100111", "’": "1100111","\n":"1101000",
         'the': '1101100', 'and': '1101101', 'are': '1101110', 'for': '1101111',
         'not': '1110000','but': '1110001', 'that': '1110010', 'with': '1110011', 'have': '1110100',
@@ -50,9 +50,11 @@ class Encrypt:
 
             encrypted += self.CHAR_CONVERSION[char]
             x+=1
+        #add the length of the binary string with a period
         encrypted = (str)(len(encrypted)) + "." + encrypted
         return encrypted
 
+    #write to a file
     def export(self):
         with open('binary_result.txt', 'w', newline='') as f:
             f.write(self.encrypt())
